@@ -48,7 +48,7 @@ header h1 {
 }
 
 .form-group {
-  margin-bottom: 16px;
+  margin: 12px 0;
 }
 
 label {
@@ -57,7 +57,7 @@ label {
   font-weight: 600;
 }
 
-input, button {
+input, select, button {
   padding: 10px;
   font-size: 16px;
   border-radius: 8px;
@@ -129,45 +129,13 @@ button:disabled {
   border-left: 4px solid #ef4444;
 }
 
-.line-item {
-  padding: 14px;
-  margin-bottom: 14px;
-  border-radius: 10px;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-}
-
-.line-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.line-title {
-  font-weight: bold;
-  color: #1e40af;
-}
-
-.line-info {
-  font-size: 0.9em;
-  color: #4b5563;
-  margin: 6px 0;
-}
-
-.line-controls {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
 .log {
   background: #1e293b;
   color: #e2e8f0;
   padding: 14px;
   border-radius: 10px;
   font-family: monospace;
-  height: 220px;
+  height: 180px;
   overflow-y: auto;
   font-size: 14px;
   white-space: pre-wrap;
@@ -184,6 +152,52 @@ button:disabled {
 
 .event-banner.show {
   display: block;
+}
+
+#mapContainer {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f0f4f8;
+}
+
+#mapCanvas {
+  display: block;
+  background: #eef4ff;
+  width: 100%;
+  height: auto;
+}
+
+#mapLegend {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #4b5563;
+  flex-wrap: wrap;
+}
+
+.legend-bus::before,
+.legend-stop::before,
+.legend-line::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.legend-bus::before { background: #10b981; }
+.legend-stop::before { background: #3b82f6; }
+.legend-line::before {
+  background: transparent;
+  border: 2px solid #8b5cf6;
+  border-radius: 2px;
+  width: 12px;
+  height: 12px;
 }
 
 @media (max-width: 900px) {
