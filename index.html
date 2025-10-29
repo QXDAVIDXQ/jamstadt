@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jamstadt Night Transit</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Setup-Bildschirm -->
+    <div id="setupScreen" class="screen visible">
+      <header>
+        <h1>🚌 Jamstadt Night Transit</h1>
+        <p>Konfiguriere dein Busunternehmen</p>
+      </header>
+      <div class="panel">
+        <div class="form-group">
+          <label for="numBuses">Anzahl Busse (1–10):</label>
+          <input type="number" id="numBuses" min="1" max="10" value="5">
+        </div>
+        <div class="form-group">
+          <label for="numDrivers">Anzahl Fahrer (1–10):</label>
+          <input type="number" id="numDrivers" min="1" max="10" value="5">
+        </div>
+        <div class="form-group">
+          <label for="startMoney">Startkapital (€):</label>
+          <input type="number" id="startMoney" min="1000" max="20000" value="5000">
+        </div>
+        <button id="startGameBtn">▶️ Spiel starten</button>
+      </div>
+    </div>
+
+    <!-- Spiel-Bildschirm -->
+    <div id="gameScreen" class="screen">
+      <header>
+        <h1>🚌 Jamstadt Night Transit</h1>
+        <div class="stats-bar">
+          <span id="moneyDisplay">💰 5.000 €</span>
+          <span id="nightDisplay">🌙 Nacht 1</span>
+          <span id="timeDisplay">🕒 23:00</span>
+        </div>
+        <div class="controls-top">
+          <button id="endNightBtn">⏭️ Nacht simulieren (23:00–05:00)</button>
+          <button id="saveGameBtn">💾 Speichern</button>
+          <button id="loadGameBtn">📂 Laden</button>
+          <button id="newGameBtn">🆕 Neues Spiel</button>
+        </div>
+      </header>
+
+      <div id="eventBanner" class="event-banner"></div>
+
+      <div class="main-content">
+        <div class="panel">
+          <h2>Deine Ressourcen</h2>
+          <h3>🚌 Busse</h3>
+          <div id="busesContainer" class="resource-grid"></div>
+          <h3>👨‍✈️ Fahrer</h3>
+          <div id="driversContainer" class="resource-grid"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Linienplan</h2>
+          <div id="linesContainer"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Simulation & Log</h2>
+          <div id="gameLog" class="log"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
