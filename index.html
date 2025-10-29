@@ -17,15 +17,15 @@
       <div class="panel">
         <div class="form-group">
           <label for="numBuses">Anzahl Busse (1–10):</label>
-          <input type="number" id="numBuses" min="1" max="10" value="5">
+          <input type="number" id="numBuses" min="1" max="10" value="3">
         </div>
         <div class="form-group">
           <label for="numDrivers">Anzahl Fahrer (1–10):</label>
-          <input type="number" id="numDrivers" min="1" max="10" value="5">
+          <input type="number" id="numDrivers" min="1" max="10" value="3">
         </div>
         <div class="form-group">
           <label for="startMoney">Startkapital (€):</label>
-          <input type="number" id="startMoney" min="1000" max="20000" value="5000">
+          <input type="number" id="startMoney" min="1000" max="10000" value="2500">
         </div>
         <button id="startGameBtn">▶️ Spiel starten</button>
       </div>
@@ -36,12 +36,13 @@
       <header>
         <h1>🚌 Jamstadt Night Transit</h1>
         <div class="stats-bar">
-          <span id="moneyDisplay">💰 5.000 €</span>
+          <span id="moneyDisplay">💰 2.500 €</span>
           <span id="nightDisplay">🌙 Nacht 1</span>
           <span id="timeDisplay">🕒 23:00</span>
         </div>
         <div class="controls-top">
-          <button id="endNightBtn">⏭️ Nacht simulieren (23:00–05:00)</button>
+          <button id="endNightBtn">⏯️ Nacht starten/pausieren</button>
+          <button id="assignTripBtn" style="display:none;">➕ Bus zuweisen</button>
           <button id="saveGameBtn">💾 Speichern</button>
           <button id="loadGameBtn">📂 Laden</button>
           <button id="newGameBtn">🆕 Neues Spiel</button>
@@ -60,8 +61,15 @@
         </div>
 
         <div class="panel">
-          <h2>Linienplan</h2>
-          <div id="linesContainer"></div>
+          <h2>Interaktive Karte – Nacht <span id="mapNight">1</span></h2>
+          <div id="mapContainer">
+            <canvas id="mapCanvas" width="900" height="600"></canvas>
+          </div>
+          <div id="mapLegend">
+            <div><span class="legend-bus"></span> Bus (grün = frei, rot = im Einsatz)</div>
+            <div><span class="legend-stop"></span> Haltestelle (Zahl = Wartende)</div>
+            <div><span class="legend-line"></span> Linienverlauf</div>
+          </div>
         </div>
 
         <div class="panel">
@@ -70,6 +78,32 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Zuweisungs-Dialog (wird dynamisch gefüllt) -->
+  <div id="assignmentDialog" style="display:none; position:fixed; top:20%; left:50%; transform:translateX(-50%); background:white; padding:20px; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,0.3); z-index:1000;">
+    <h3>🚌 Bus zuweisen</h3>
+    <div class="form-group">
+      <label>Bus:</label>
+      <select id="assignBus"></select>
+    </div>
+    <div class="form-group">
+      <label>Fahrer:</label>
+      <select id="assignDriver"></select>
+    </div>
+    <div class="form-group">
+      <label>Linie:</label>
+      <select id="assignLine">
+        <option value="N1">N1: ZOB → Wenningbrück</option>
+        <option value="N2">N2: ZOB → Oberorning</option>
+        <option value="N3">N3: ZOB → Legoland</option>
+        <option value="N4">N4: ZOB → Campingbedarf</option>
+        <option value="N5">N5: ZOB → Herwald</option>
+        <option value="NS1">NS1: Sonder zum Einkaufszentrum</option>
+      </select>
+    </div>
+    <button onclick="confirmAssignment()">✅ Zuweisen</button>
+    <button onclick="closeAssignmentDialog()">❌ Abbrechen</button>
   </div>
 
   <script src="game.js"></script>
